@@ -83,9 +83,9 @@ export class TodosAccess {
                 userId: userId,
                 todoId: todoId
             },
-            UpdateExpression: 'set attachmentUrl = :a',
+            UpdateExpression: 'set attachmentUrl = :URL',
             ExpressionAttributeValues: {
-                ':a': `https://${bucketName}.s3.amazonaws.com/${todoId}`
+                ':URL': `https://${bucketName}.s3.amazonaws.com/${todoId}`
             },
             ReturnValues: 'UPDATED_NEW'
         }).promise()
