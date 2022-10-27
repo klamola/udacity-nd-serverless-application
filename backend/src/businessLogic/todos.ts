@@ -27,7 +27,6 @@ export async function createTodo(createTodoRequest: CreateTodoRequest, userId: s
         name: createTodoRequest.name,
         dueDate: createTodoRequest.dueDate,
         done: false,
-        attachmentUrl: `https://${process.env.ATTACHMENT_S3_BUCKET}.s3.amazonaws.com/${todoId}`,
         ...createTodoRequest
     })
 }
