@@ -41,42 +41,6 @@ provider:
             - xray:PutTraceSegments
           Resource: "*"
 
-custom:
-  documentation:
-    api:
-      info:
-        version: "1.0.0"
-        title: serverless-api
-        description: serverless-api
-    models:
-      - name: CreateTodoRequest
-        contentType: "application/json"
-        schema:
-          required:
-            - name
-            - dueDate
-          properties:
-            name:
-              minLength: 1
-              type: string
-            dueDate:
-              type: string
-      - name: UpdateTodoRequest
-        contentType: "application/json"
-        schema:
-          required:
-            - name
-            - dueDate
-            - done
-          properties:
-            name:
-              minLength: 1
-              type: string
-            dueDate:
-              type: string
-            done:
-              type: boolean
-
 functions:
 
   Auth:
@@ -118,7 +82,7 @@ functions:
           authorizer: Auth
           request:
             schema:
-              application/json: ${file(schemas/create-todo-model.json)}
+              application/json: ${file(models/create-todo-model.json)}
     iamRoleStatementsName: ${self:provider.environment.PROJECT_NAME}-create-todo-role-${self:provider.stage}
     iamRoleStatements:
       - Effect: Allow
@@ -143,7 +107,7 @@ functions:
           authorizer: Auth
           request:
             schema:
-              application/json: ${file(schemas/update-todo-model.json)}
+              application/json: ${file(models/update-todo-model.json)}
     iamRoleStatementsName: ${self:provider.environment.PROJECT_NAME}-update-todo-role-${self:provider.stage}
     iamRoleStatements:
       - Effect: Allow
